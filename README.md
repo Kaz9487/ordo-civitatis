@@ -76,6 +76,8 @@ See [`docs/MEMORY_SYSTEM.md`](docs/MEMORY_SYSTEM.md) for the full design.
 .
 ├─ .gitattributes
 ├─ .gitignore
+├─ .github/
+│  └─ pull_request_template.md
 ├─ README.md
 ├─ LICENSE
 ├─ AGENTS.md
