@@ -1,0 +1,32 @@
+{
+  "task": "example-task",
+  "status": "in_progress",
+  "repository": "example/repository",
+  "branch": "example/change",
+  "commit": "<commit-sha>",
+  "active_rule_sets": [
+    "AGENTS.md",
+    "agent_rules/WORKSPACE_OPERATIONS.md"
+  ],
+  "operations_overlay": "PROJECT_OPERATIONS.md",
+  "artifacts": [
+    {
+      "path": "artifacts/example-result.json",
+      "sha256": "<artifact-sha256>"
+    }
+  ],
+  "process": {
+    "pid": 12345,
+    "phase": "validation",
+    "poll_interval_seconds": 60
+  },
+  "authorization": {
+    "local_edits": true,
+    "dependency_changes": false,
+    "process_control": false,
+    "commit": false,
+    "push": false,
+    "release": false
+  },
+  "next_action": "Run the bounded validation step."
+}

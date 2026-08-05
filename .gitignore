@@ -1,0 +1,30 @@
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor and temporary files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Local scratch and generated output
+/.local/
+/.cache/
+/tmp/
+/build/
+/dist/
+*.log
+
+# Generated root-level archives
+/*.zip
+/*.tar
+/*.tar.gz
+/*.tgz
+/*.7z

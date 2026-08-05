@@ -1,0 +1,7 @@
+# Store repository text consistently across operating systems.
+* text=auto eol=lf
+
+# Public policy and template formats.
+*.md text eol=lf
+*.json text eol=lf
+LICENSE text eol=lf
