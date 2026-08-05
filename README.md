@@ -5,9 +5,8 @@
 ORDO CIVITATIS is a practical reference for teams that use coding agents in
 software projects. It helps teams define what agents may change, what evidence
 supports a claim, how much process a task needs, how interrupted work can be
-resumed, and when the agent should stop.
-
-Its goal is to avoid both careless shortcuts and unnecessary complexity.
+resumed, and when the agent should stop. Its goal is to avoid both careless
+shortcuts and unnecessary complexity.
 
 ## Why this project exists
 
@@ -21,14 +20,12 @@ ability. For example, an agent may:
 - optimize a component that has little effect on the full workflow;
 - turn a small correction into a framework for hypothetical future needs.
 
-ORDO CIVITATIS addresses these problems through project-level rules.
-
-One idea guides the framework: the amount of process should match the impact
-of the task.
-
-A small, well-understood correction should remain small. Work that can affect
-correctness, shared interfaces, important evidence, deployment, expensive
-operations, or measured performance needs more careful design and validation.
+ORDO CIVITATIS addresses these problems through project-level rules. One idea
+guides the framework: the amount of process should match the impact of the
+task. A small, well-understood correction should remain small. Work that can
+affect correctness, shared interfaces, important evidence, deployment,
+expensive operations, or measured performance needs more careful design and
+validation.
 
 ## How the rules are organized
 
@@ -44,9 +41,7 @@ for specialized work.
 
 For agents that support this layout, the root `AGENTS.md` is the always-read
 policy. It tells the agent when a task also requires the Decision or Operations
-rules.
-
-The agent decides which additional rule files apply to the current task.
+rules. The agent decides which additional rule files apply to the current task.
 ORDO CIVITATIS does not include an automatic policy loader.
 
 The generic Operations rules identify which project settings must be declared
@@ -198,22 +193,18 @@ works.
 ## Agent compatibility
 
 This structure assumes that the coding agent reads a root `AGENTS.md` file and
-can open the repository files referenced by it.
-
-Because the agent decides when specialized rules apply, test this behavior with
-realistic tasks on every agent you intend to support.
-
-If an agent does not support `AGENTS.md` or cannot read repository files,
-provide the relevant rules through that agent's supported instruction system.
+can open the repository files referenced by it. Because the agent decides when
+specialized rules apply, test this behavior with realistic tasks on every agent
+you intend to support. If an agent does not support `AGENTS.md` or cannot read
+repository files, provide the relevant rules through that agent's supported
+instruction system.
 
 ## Evidence limits
 
 This repository does not include a controlled study comparing agent teams,
-rule sets, or project outcomes.
-
-Treat ORDO CIVITATIS as an inspectable engineering framework. Adapt it to real
-needs, test it on real workflows, and limit claims to the evidence available
-in the adopting project.
+rule sets, or project outcomes. Treat ORDO CIVITATIS as an inspectable
+engineering framework. Adapt it to real needs, test it on real workflows, and
+limit claims to the evidence available in the adopting project.
 
 ## Current scope
 
