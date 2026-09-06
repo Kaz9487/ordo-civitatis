@@ -70,17 +70,11 @@ does not require another milestone snapshot.
 
 ## Task checkpoint: coordination authority
 
-Create a task checkpoint when at least one of these applies:
-
-- the task may survive context compaction, resume, or handoff;
-- it starts or monitors a long-running process;
-- it produced expensive or decision-bearing work that must not be repeated
-  casually;
-- it coordinates material work across agents, systems, repositories, or
-  environments; or
-- exact authorization, process, artifact, or next-action state must persist.
-
-Do not create one merely because several tools were called.
+Use the persistence triggers in
+[`WORKSPACE_OPERATIONS.md`](../agent_rules/WORKSPACE_OPERATIONS.md#active-task-continuation-state).
+A concrete handoff, long-running process, or costly loss of exact working state
+can justify a checkpoint. The mere possibility of interruption or several tool
+calls does not. Operations owns the trigger policy and required state location.
 
 The task memo is authoritative for the coordination state it records. It is
 not evidence that an implementation is correct or a hypothesis is supported.

@@ -111,6 +111,13 @@ messages sent through connected external services, or production systems.
 Decide which can be covered by one task-scoped approval and which require
 separate authority.
 
+For routine local validation, identify the existing environment, permitted
+commands, fixture and output boundaries, production access restrictions, and
+any meaningful cost limits. Use the operations overlay when these values are
+required. This makes the core's authority to implement, check, fix failures
+caused by the change, and rerun affected checks usable without repeated
+permission requests. A publication step still needs its own applicable authority.
+
 ### 5. Adopt only the needed memory tiers
 
 A short project may need only an `AGENTS.md`. A long-lived project with handoff
@@ -124,7 +131,9 @@ First check representative routing scenarios:
 
 - trivial explanation or local fix uses the core only;
 - material architecture or experiment work loads Decision;
-- environment, Git, process, packaging, or publication work loads Operations;
+- environment changes, Git writes, managed processes, packaging, or publication
+  work loads Operations;
+- routine source lookup and read-only Git inspection alone use the core;
 - a performance change with a real run loads both; and
 - a task that changes phase re-evaluates routing.
 
@@ -132,6 +141,35 @@ Then run one real small task through the adopted instructions. Verify that a
 new agent can locate authority, understand authorization, complete the
 workflow, report the right milestone, and resume without duplicate work.
 Static routing review does not establish runtime behavior.
+
+Choose a task with an observable result and a plausible failure that the
+workflow would expose. Follow Decision's validation selection guidance when
+that layer applies. For example, inspect the contents of a small exported
+artifact after reopening it, rather than checking only that a file exists.
+Do not infer full-scale reliability or performance from that small run.
+
+## Recheck behavior when changing models
+
+Keep shared policy focused on project contracts. When changing models or their
+settings, check whether an instruction still addresses a real failure, causes
+unnecessary work, or creates an unintended stopping point. Adjust the owning
+rule instead of appending a competing model-specific instruction stack.
+
+Use a small set of representative tasks that exposes the behavior in question:
+
+| Task | Behavior to inspect |
+|---|---|
+| A typo correction | Local inspection without a full repository survey or task checkpoint |
+| A local bug fix | Implementation, meaningful validation, and repair of failures caused by the change before completion |
+| An architecture comparison | Appropriate Decision routing, evidence limits, and no unrequested implementation |
+| Authorized local work followed by an unauthorized publication | A reviewable local result, with only the external step left pending |
+| A correction or side question during work | Incorporation of the update while retaining still-applicable goals and completed work |
+
+When comparing policy revisions, hold the model, settings, task inputs, and
+available tools constant. Inspect completion, unnecessary questions, unrelated
+reading, repeated checks, and authorization or evidence violations. These
+examples guide an adopter's evaluation and are not a mandatory test suite for
+every edit. A static review alone does not establish improved model behavior.
 
 ## What belongs in the project-specific overlay
 
