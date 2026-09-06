@@ -1,5 +1,8 @@
 # ORDO CIVITATIS
 
+[![Latest release](https://img.shields.io/github/v/release/Kaz9487/ordo-civitatis?label=release&color=blue)](https://github.com/Kaz9487/ordo-civitatis/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/Kaz9487/ordo-civitatis?color=blue)](LICENSE)
+
 ## Coding Agent Engineering Reference
 
 Framework revision: **0.2.0**. See the [changelog](CHANGELOG.md) for release
