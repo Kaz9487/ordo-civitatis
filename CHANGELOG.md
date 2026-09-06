@@ -14,7 +14,7 @@ Released revisions use Git tags in the form `vX.Y.Z` pointing to exact commits.
 Do not move a published tag to different content. An unreleased entry does not
 establish that a tag or GitHub release exists.
 
-## 0.2.0 - Unreleased
+## 0.2.0 - 2026-09-06
 
 ### Changed
 
