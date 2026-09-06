@@ -103,13 +103,29 @@ Boundary-correct work asks:
 This does not imply that every change needs a new abstraction. A documented
 contract or direct local fix may be sufficient.
 
+## Why a real mini-flow comes first
+
+A collection of passing tests can leave the changed operational boundary
+untouched. For execution and integration changes, a small real workflow can
+connect the input, affected components, and resulting artifact in one check.
+Its value comes from exposing a plausible failure and checking the expected
+result against the contract, not from being called a mini-flow.
+
+Reducing the workload keeps this check affordable while preserving the parts
+that determine the result. Separate property, edge-case, failure, or recovery
+tests remain useful where they cover important risks the workflow misses.
+Required checks still apply. A small run cannot establish full-scale behavior.
+Decision owns these validation choices and claim limits.
+
 ## Performance work needs a decision-relevant upper bound
 
 Optimizing a component without bounding its possible effect can produce
 impressive local numbers and negligible decision value. Declare the primary
-metric and estimate the best possible improvement before changing
-performance-sensitive code. For an end-to-end speed claim, use the component's
-share of end-to-end time to bound the best possible overall speedup. For a
+metric and estimate the possible improvement before substantial implementation
+or an expensive run. A bounded prototype can first establish an unfamiliar
+mechanism or cost structure. Estimates should retain their uncertainty. For an
+end-to-end speed claim, use the component's share of end-to-end time to bound
+the best possible overall speedup. For a
 memory, startup, recovery, reliability, deadline, or deployment objective, use
 the corresponding decision-relevant bound instead.
 
@@ -117,9 +133,7 @@ Measurement should also preserve distinct guardrails. Throughput, latency,
 quality, correctness, memory, startup cost, and recovery behavior cannot be
 substituted for one another.
 
-The framework prefers removing unnecessary work over accelerating it, and a
-real small workflow over a collection of tests when integration is the primary
-risk.
+The framework prefers removing unnecessary work over accelerating it.
 
 ## Why durable memory is replace-and-archive
 

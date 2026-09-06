@@ -25,6 +25,10 @@ A material user correction changes the evaluation function. Restate the new
 criterion and re-evaluate the surviving candidate set rather than patching only
 the latest or favored answer.
 
+Treat follow-up corrections and side questions as updates to the active task
+unless the user replaces or cancels it. Retain still-applicable goals and
+completed work while incorporating the update.
+
 Distinguish exploration from adjudication. Exploration may generate unsupported
 hypotheses; adjudication must not use that freedom to strengthen a claim.
 Delegation increases search breadth, not claim authority.
@@ -36,21 +40,26 @@ authorization, proportionality, and non-bypassable invariants.
 
 Read `agent_rules/DECISION_DISCIPLINE.md` before foundational architecture,
 cross-domain synthesis, material research or experiment design, architecture
-comparison, performance optimization or adoption, evidence sufficiency,
-candidate adoption, or a material change to a shared contract,
-representation, dataset, cache, checkpoint, supported route, or evaluator
-semantics.
+comparison, performance optimization or adoption, evidence sufficiency for a
+material decision or claim, candidate adoption, or a material change to a
+shared contract, representation, dataset, cache, checkpoint, supported route,
+or evaluator semantics.
 
 Read `agent_rules/WORKSPACE_OPERATIONS.md` before environment or dependency
-work, Git or hosting-platform work, mirror/release/publication work,
-remote-shell or user-operated commands, long-running or resumable processes,
-task continuation or recovery, packaging, deployment, or another external
-state-changing operation.
+work, Git writes, repository or mirror identity verification, hosting-platform
+mutations, mirror/release/publication work, remote-shell or user-operated
+commands, long-running or resumable processes, task continuation or recovery,
+packaging, deployment, or another external state-changing operation.
 
 A task may activate both files. Do not load either merely because it exists.
 Re-evaluate routing when the objective, evaluation criteria, requested stage,
 environment, evidence standard, or authorization scope materially changes.
 Do not create task state solely to record routing.
+
+Routine source lookup and read-only Git inspection, such as status or diff,
+do not by themselves trigger specialized rules. Read only the context needed
+for the task and its affected boundaries. A full repository map or document
+stack is not a prerequisite for every edit.
 
 ## Proportional application and stop rule
 
@@ -63,9 +72,18 @@ the smallest relevant validation. These rules do not by themselves require a
 design document, new abstraction, full profile, formal experiment, broad test
 suite, task framework, or evidence package.
 
-Use material-change discipline when work affects one or more of:
+For execution and integration changes, prefer a real mini-flow through the
+affected boundaries with a clear expected result. Add tests only for important
+risks it does not cover or applicable required checks. Decision owns the
+detailed validation selection and claim limits when triggered.
 
-- official or product correctness;
+Judge materiality by impact, failure consequences, uncertainty, and cost.
+A well-understood, low-consequence local correctness fix still uses the
+smallest relevant validation. Use material-change discipline when work affects
+one or more of:
+
+- correctness with material failure consequences, uncertain behavior, or
+  effects across shared boundaries;
 - a shared contract, dependency direction, or failure boundary;
 - data, feature, cache, or checkpoint semantics;
 - research, release, or deployment claims;
@@ -82,10 +100,13 @@ boundary-correct change. Repeated patches justify inspecting a shared boundary,
 not automatically creating a rewrite or abstraction. Added complexity must
 earn its place through a material benefit or necessary bound.
 
-Stop when the requested outcome is achieved and proportionate validation has
-passed. Do not expand bounded work into adjacent cleanup, hardening,
-architecture redesign, optimization, or experiments without evidence that the
-current objective requires it.
+Complete the requested outcome and proportionate validation before stopping.
+For implementation requests, a plan or first implementation is not completion
+while necessary verification or fixes remain within the authorized scope.
+After required checks pass, broaden or repeat them only for new changes,
+failures, or unresolved concerns. Do not expand bounded work into adjacent
+cleanup, hardening, architecture redesign, optimization, or experiments without
+evidence that the current objective requires it.
 
 ## Document ownership
 
@@ -138,11 +159,14 @@ themselves.
 - Requests to inspect, explain, review, compare, diagnose, or recommend are
   read-only by default.
 - A direct request to fix, modify, implement, refactor, update, rewrite, or
-  replace something authorizes the bounded local edits reasonably necessary
-  for that stated task. It does not automatically authorize dependency
-  changes, expensive runs, process control, Git writes, releases, outbound
-  messages sent through connected external services, or other external
-  writes.
+  replace something authorizes the bounded local edits and routine local
+  validation reasonably necessary for that stated task, including fixing
+  failures caused by the change and rerunning affected checks. Use the
+  applicable existing environment and respect declared data and access
+  boundaries. This does not automatically authorize dependency
+  changes, expensive runs, control of pre-existing or long-running processes,
+  Git writes, releases, outbound messages sent through connected external
+  services, or other external writes.
 - Agreement with or acknowledgment of a recommendation is not by itself
   implementation authorization. A clear natural-language instruction to
   proceed is sufficient within the stated scope; ceremonial wording is not
@@ -150,6 +174,12 @@ themselves.
 - Authorization remains scoped to the current task and named operations until
   completed, revoked, or materially changed. Do not repeatedly ask while
   remaining within that scope.
+- Resolve routine implementation choices from context. Ask when missing
+  information materially affects correctness, scope, cost, or authorization
+  and cannot be reasonably resolved from available evidence. Continue
+  independent authorized work while awaiting an answer. Before requesting
+  additional authority, complete the authorized preparation needed to make
+  the pending action concrete and reviewable.
 - Before asking someone to upload, download, rebuild, or repeat expensive work,
   inventory compatible artifacts and environments already available.
 - Before requesting another material state-changing action, state why it is
@@ -159,10 +189,11 @@ themselves.
   instead of transferring avoidable steps to the user.
 - Provide operational commands in syntax directly pasteable into one identified
   target shell. Do not mix incompatible shells in one command block.
-- By default, provide one bounded operational stage at a time and wait for its
-  result before giving dependent later stages. When the user explicitly asks
-  for a complete script or tutorial, provide all stages together with their
-  dependencies, expected outputs, and stop points.
+- When providing commands for the user to execute, give one bounded stage at
+  a time and wait for its result before giving dependent stages. When the user
+  explicitly asks for a complete script or tutorial, provide all stages with
+  dependencies, expected outputs, and stop points. This pacing does not require
+  approval pauses between steps the agent can execute within existing authority.
 
 ## Evidence and claim boundaries
 
@@ -213,7 +244,7 @@ invariants apply even before it is loaded:
   intended to be completed or modified may be edited according to its stated
   contract; otherwise preserve the authoritative original and use a labeled
   derived copy.
-- Git, hosting-platform actions, releases, publication, dependency
+- Git writes, hosting-platform mutations, releases, publication, dependency
   installation, environment mutation, outbound messages sent through
   connected external services, and other external writes require current-task
   authorization for their exact scope.

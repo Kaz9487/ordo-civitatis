@@ -2,6 +2,9 @@
 
 ## Coding Agent Engineering Reference
 
+Framework revision: **0.2.0**. See the [changelog](CHANGELOG.md) for release
+status, versioning conventions, and adoption notes.
+
 ORDO CIVITATIS is a practical reference for teams that use coding agents in
 software projects. It helps teams define what agents may change, what evidence
 supports a claim, how much process a task needs, how interrupted work can be
@@ -79,6 +82,7 @@ See [`docs/MEMORY_SYSTEM.md`](docs/MEMORY_SYSTEM.md) for the full design.
 ├─ .github/
 │  └─ pull_request_template.md
 ├─ README.md
+├─ CHANGELOG.md
 ├─ LICENSE
 ├─ AGENTS.md
 ├─ agent_rules/
@@ -186,7 +190,9 @@ works.
   artifacts, or reproducible calculations.
 - Give each correctness rule one clear source of truth.
 - Measure the bottleneck that matters before optimizing it.
-- Prefer a small end-to-end test when integration is the main risk.
+- Prefer a real mini-flow through affected execution and integration boundaries,
+  checking the expected result. Add tests for important uncovered risks and
+  applicable required checks.
 - Save enough context to resume important work without treating the saved
   summary as technical evidence.
 - Stop when the requested result is complete and the necessary validation has

@@ -9,7 +9,8 @@ This file is a conditionally mandatory extension of the repository root
 - a material research hypothesis or experiment design;
 - architecture comparison or a decision-bearing technical claim;
 - performance adjudication, optimization, or adoption;
-- evidence sufficiency, claim boundaries, or candidate adoption; or
+- evidence sufficiency or claim boundaries for a material decision, or
+  candidate adoption; or
 - a material change to a shared contract, dependency boundary,
   representation, dataset, cache, checkpoint, supported route, or evaluator
   semantics.
@@ -36,9 +37,27 @@ not require schemas, transition artifacts, or task infrastructure.
 
 Generate and clarify materially different mechanisms. Radical assumptions,
 cross-domain transfer, and deliberately unconstrained candidates are allowed.
-Label unsupported mechanisms as hypotheses, but do not reject an idea merely
-because implementation, evidence, or performance validation does not yet
-exist.
+
+Start from the objective, constraints, required properties, and how the
+problem arises. Reconsider its representation, decomposition, and solution
+method from first principles. Explore more direct derivations, better-suited
+mathematical structures, and equivalent formulations that eliminate work.
+
+Look for repeated subproblems, symmetries, shared computation, and structures
+that support reuse, incremental updates, or direct solutions. Steps in an
+existing implementation are not necessarily intrinsic to the problem.
+
+Use mathematical elegance to guide exploration when it offers concrete
+advantages, such as fewer independent assumptions, clearer invariants, less
+intermediate state, or lower computational complexity. Formal simplicity
+alone does not justify adoption. Evaluate practical outcomes and the complete
+execution path against the task's requirements.
+
+Label unsupported mechanisms as hypotheses. Explain how a candidate might
+work, then choose derivation, source verification, or experimentation at a
+scale sufficient to decide the next step. Do not reject an idea merely because
+implementation or measurements do not yet exist, or demand full adoption
+evidence before the idea is sufficiently specified.
 
 Exploration freedom does not strengthen a decision claim. A name, analogy, or
 plausible story is not evidence that a mechanism works.
@@ -194,6 +213,12 @@ over every exploratory idea. Delegation increases breadth, not authority.
   source, contracts, literature, base rates, or original results, or running
   proportionate tests.
 
+- Search literature when it can provide a useful mechanism, expose a limitation,
+  or resolve a material uncertainty. Do not restrict the search by discipline
+  when relevant structures cross domain boundaries. When transferring a method,
+  identify the shared structure, conditions under which it holds, and necessary
+  adaptations. Retain the source and its connection to the mechanism being used.
+
 - Treat official specifications and applicable evaluators as authorities
   within their defined scope. Preserve the original identity of baseline or
   reference artifacts when the applicable contract requires it. A template
@@ -257,8 +282,112 @@ over every exploratory idea. Delegation increases breadth, not authority.
   - what will be removed or deliberately omitted; and
   - the real mini-flow or artifact check that reaches the affected boundary.
 
-- Repeated local patches justify inspecting a shared boundary, not
-  automatically creating an abstraction or rewrite.
+### Method fit and supporting components
+
+When a promising method underperforms, distinguish limitations of its core
+mechanism from gaps in supporting conditions, such as data representation,
+construction, scheduling, interfaces, or the execution environment.
+
+When the core mechanism fits and the support gap is specific and tractable,
+consider bounded supporting work to realize the method's capabilities.
+Explain which limitation the support removes, why it could work, and what
+observation would support or refute that judgment. Do not dismiss a promising
+method solely because the existing system lacks the support it needs.
+
+If progress repeatedly requires new exceptions, distorted inputs, or changes
+to core assumptions, reassess the method's fit. Do not treat core
+incompatibility as an indefinitely unfinished support system.
+
+Evaluate the complete solution, including supporting components, against
+quality, runtime, memory, dependencies, maintenance, and failure behavior.
+Necessary helpers, specialist routes, or multiple methods are allowed, but
+must be evaluated as part of the architecture under the multiplicity rules.
+
+### Representation, abstraction, and restructuring
+
+Inspect whether intermediate representations and processing stages still do
+necessary work. When B in A -> B -> C mainly serves historical compatibility,
+repeated conversion, or temporary storage, and A can produce C directly,
+explore a direct path or fused computation.
+
+Before removing or combining stages, identify their necessary semantics and
+responsibilities, including applicable validation, isolation, consistency,
+and recovery behavior. Preserve these responsibilities with clear ownership
+in the new path. A shorter path alone does not establish a better design.
+
+Find common structure to reduce repeated derivation, data, and implementation,
+while preserving differences that materially affect correctness, method
+selection, or performance. Similar interfaces do not require the same
+implementation, and different domains may share an underlying mechanism.
+Choose unification, specialization, or composition according to the actual
+semantics and structure.
+
+Consider bounded restructuring when local changes perpetuate conflicting
+representations, duplicated responsibilities, or paths that require coordinated
+edits in many easily missed places. Compare restructuring with a viable local
+change. Choose the approach that applies the intended design consistently,
+and decouple responsibilities and dependencies where needed to resolve the
+identified problem. Repeated patches justify this assessment, not an automatic
+rewrite.
+
+Validate the new path through the affected boundaries using the validation
+selection rules. Preserve compatible completed work and evidence under the
+evidence reuse rules below.
+
+## Validation selection and claim limits
+
+For execution and integration changes, use a real mini-flow as the preferred
+validation: the smallest practical workflow that crosses the affected
+boundaries and checks a clear expected result against the applicable contract.
+Choose it to expose a plausible failure caused by the change. For example, a
+data-export change can be checked by reading a small input, transforming and
+exporting it, then reopening the output and checking its contents.
+
+Reduce workload size and cost while preserving the dependencies, state,
+transformations, and transitions that can affect the result. Mocking away the
+changed boundary does not validate that boundary. A success flag, zero exit
+code, or existing output file alone does not establish correct output.
+
+Prefer this workflow over collections of superficial tests that restate the
+implementation or repeatedly cover the same successful path. Add focused tests
+only for important risks the mini-flow does not cover, or to satisfy applicable
+required checks. Algorithmic properties, edge cases, failure handling, recovery,
+and concurrency may require separate targeted tests. Keep meaningful regression
+coverage and required checks unless their removal is justified within scope.
+
+Choose validation to match the claim. A typo fix may need only local inspection,
+and a pure algorithm change may be better checked through properties and boundary
+cases. Do not manufacture a mini-flow for every task. A small successful run
+does not establish full-scale performance, reliability, release, or deployment.
+When a necessary boundary cannot be exercised with available access and authority,
+report the exact gap and restrict the completion claim while completing
+unaffected work. The core stop rule governs when to end validation.
+
+## Prioritization by impact and scale
+
+Analyze how different work types, input structures, and scales affect the
+overall objective. A few costly paths, frequent operations, or failures under
+particular conditions may dominate the outcome. Do not rely only on averages
+or easily obtained local results.
+
+Prioritize investigation by actual impact, current shortfall, plausible
+improvement, and effort. When a class of work accounts for a substantial share
+of demand, resource use, or risk, assess whether it offers a more valuable
+improvement opportunity.
+
+Account for scale effects. Some methods become advantageous only as workload
+grows, structure repeats, or a particular bottleneck emerges. Others fail as
+scale increases. Do not rule out the former solely from small-scale results,
+or generalize small-scale success to all conditions.
+
+First examine the mechanism using an affordable approach that can distinguish
+the relevant alternatives, then confirm it under the conditions and scale
+required by the claim. Maintain applicable correctness and reliability
+requirements for work that contributes less to the overall objective.
+
+The adopting project or current task declares concrete targets, measures,
+tradeoffs, and execution budgets. Reprioritize when new evidence changes the
+understanding of bottlenecks, applicability, or improvement potential.
 
 ## Performance optimization
 
@@ -285,9 +414,13 @@ over every exploratory idea. Delegation increases breadth, not authority.
   6. what can be removed, reused, incremental, sparse, batched, vectorized,
      fused, prefetched, overlapped, or safely parallelized.
 
-- Estimate the maximum possible benefit in the declared primary metric before
-  implementation. For an end-to-end speed claim, use the measured time share
-  to bound the best possible overall speedup. Do not optimize below
+- Before committing to substantial implementation or an expensive run,
+  estimate the possible benefit in the declared primary metric, including an
+  upper bound where the evidence supports one. Use ranges and state uncertainty
+  when costs are not yet known. A bounded prototype under existing authorization
+  may precede this estimate when needed to establish the mechanism or cost
+  structure. For an end-to-end speed claim, use the measured time share to bound
+  the best possible overall speedup. Do not adopt an optimization below
   measurement variance or the required material improvement unless it unlocks
   a necessary change.
 
@@ -310,10 +443,6 @@ over every exploratory idea. Delegation increases breadth, not authority.
     decision-relevant scope, or satisfaction of a necessary runtime, memory,
     reliability, recovery, or deployment bound without unacceptable
     regression in the declared guardrails.
-
-- Unit tests prove encoded behavior, not operational completion or policy
-  necessity. When integration is the main risk, a real mini-flow is usually
-  stronger than many isolated tests.
 
 - Before an expensive full run, exercise the same relevant source, data,
   environment, state, wrapper, evaluator, and stage transitions at small

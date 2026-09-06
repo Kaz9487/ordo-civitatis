@@ -22,6 +22,19 @@ their publication is intentional and reviewed.
 - Dependency installation policy: `<policy>`
 - Evidence environment identity requirements: `<requirements>`
 
+## Local validation workflow
+
+- Applicable existing validation environment: `<identity>`
+- Routine local validation commands covered by an implementation task:
+  `<commands>`
+- Fixture and output scope, including what may be replaced: `<paths-and-policy>`
+- Production access restrictions: `<restrictions>`
+- Cost or duration limits requiring separate authorization: `<limits-or-none>`
+
+Declare actual conditions. Do not assume local tests use disposable data or
+have no production access. Remove this section if no such declarations are
+needed for the adopted workflow.
+
 ## Repository and external-write boundaries
 
 - Source-of-truth repository: `<repository>`

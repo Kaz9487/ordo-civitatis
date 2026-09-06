@@ -6,7 +6,8 @@ This file is a conditionally mandatory extension of the repository root
 `AGENTS.md`. Read it before work involving one or more of:
 
 - environment, interpreter, toolchain, dependency, or hardware-target work;
-- Git, hosting-platform, mirror, release, or publication work;
+- Git writes, repository or mirror identity verification, hosting-platform
+  mutations, mirror, release, or publication work;
 - remote-shell commands or user-operated multi-stage procedures;
 - long-running, expensive, resumable, or monitored processes;
 - task continuation, handoff, persistent state, or recovery;
@@ -18,6 +19,9 @@ behavior, authorization, proportionality, and non-bypassable invariants.
 `DECISION_DISCIPLINE.md` owns whether a material experiment, architecture, or
 optimization is justified and what claim it supports. This file owns how an
 authorized operation is executed, persisted, recovered, and published.
+
+Routine read-only inspection, such as Git status, diff, or log, does not by
+itself trigger these procedures or require write authorization.
 
 Re-evaluate routing when the requested stage, environment, authorization
 scope, process state, or external-write scope materially changes.
@@ -51,6 +55,12 @@ Declare when applicable:
 - local and remote shells and required wrappers; and
 - packaging, validation, deployment, and publication procedures.
 
+For authorized local validation workflows, declare the applicable commands,
+fixture and output scope, production access restrictions, and cost limits when
+needed. These declarations describe the environment in which the core's local
+validation authority can be exercised. Do not assume fixtures are disposable
+or production access is absent without evidence.
+
 Do not invent missing values. If an operation requires an undeclared value,
 identify the contract gap and restrict the operation or claim. Do not keep
 fictional placeholders in an active project policy.
@@ -60,10 +70,9 @@ fictional placeholders in an active project policy.
 - Provide commands in syntax directly pasteable into the named target shell.
   Do not mix incompatible shells in one command block.
 
-- By default, give one bounded operational stage at a time and wait for its
-  result before giving dependent later stages. When the user explicitly asks
-  for a complete tutorial or script, provide all stages together with
-  dependencies, expected outputs, and stop points.
+- Apply the core's stage-by-stage pacing to commands the user must execute.
+  For agent-executed work, inspect each result before dependent steps and
+  continue within existing authority without an approval pause at every stage.
 
 - Before asking the user to perform a material action, follow the core
   requirement to explain why it is needed, what it changes, expected cost or
@@ -122,9 +131,9 @@ fictional placeholders in an active project policy.
 
 ## Git, external writes, and mirrors
 
-The authorization rules in `AGENTS.md` apply to every Git, hosting-platform,
-release, publication, synchronization, outbound message sent through a
-connected external service, and other external write.
+The authorization rules in `AGENTS.md` apply to every Git write,
+hosting-platform mutation, release, publication, synchronization, outbound
+message sent through a connected external service, and other external write.
 
 - Local edits do not authorize commit, push, change-request creation, merge,
   release, publication, or synchronization. When no authorization exists,
@@ -154,7 +163,8 @@ connected external service, and other external write.
 
 Create persistent task state when one or more of these applies:
 
-- work may survive context compaction, conversation resumption, or handoff;
+- material work has a concrete continuation or handoff need, or an approaching
+  context limit makes loss of exact working state a practical risk;
 - it starts, resumes, or monitors a long-running process;
 - it produces expensive or decision-bearing work that should not be repeated
   casually;
@@ -162,8 +172,9 @@ Create persistent task state when one or more of these applies:
   or environments; or
 - exact authorization, process, artifact, or next-action state must persist.
 
-Tool-call count and conditional-rule routing alone are not triggers. Do not
-create empty placeholder memo, state, or evidence files.
+The mere possibility of interruption, tool-call count, and conditional-rule
+routing alone are not triggers. Do not create empty placeholder memo, state,
+or evidence files.
 
 Use the task-state root declared by the project overlay. Keep the human memo
 compact and record when applicable:
